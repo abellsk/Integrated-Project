@@ -43,52 +43,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public float rotationSpeed = 60f;
 
-    /// <summary>
-    /// The total amount of stamina the player will have
-    /// </summary>
-    private float totalStamina = 10f;
-
-    /// <summary>
-    /// The current stamina of the player
-    /// </summary>
-    private float currentStamina;
-
-    /// <summary>
-    /// Amount of stamina regen per second
-    /// </summary>
-    private float staminaRegen = 0.5f;
-
-    /// <summary>
-    /// Amount of stamina used per second when sprinting
-    /// </summary>
-    private float sprintDrainRate = 1.5f;
-
-    /// <summary>
-    /// True when the player is sprinting
-    /// </summary>
-    private bool sprint;
-
-    /// <summary>
-    /// The amount to multiply the base movement speed when sprinting
-    /// </summary>
-    [Range(2f, 5f)]
-    public float sprintFactor;
-
-    /// <summary>
-    /// The amount of upward force to apply to the player when jumping
-    /// </summary>
-    public float jumpForce;
-
-    /// <summary>
-    /// The amount of stamina needed to jump
-    /// </summary>
-    private float jumpStaminaCost;
-
-    /// <summary>
-    /// True if the player can jump
-    /// </summary>
-    private bool canJump;
-
     public static Player player;
 
     #endregion
@@ -112,9 +66,9 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The UI healthbar of the player.
     /// </summary>
-    public Scrollbar healthBar;
+    //public Scrollbar healthBar;
 
-    public Scrollbar staminaBar;
+    //public Scrollbar staminaBar;
 
     #endregion
 
@@ -146,20 +100,22 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         currentHealth = totalHealth;
+        /*
         currentStamina = totalStamina;
         jumpStaminaCost = totalStamina * 0.3f;
+        */
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isDead)
-        {
+        //if(!isDead)
+        //{
             Rotation();
             Movement();
             Raycasting();
-        }
+        //}
         interact = false;
     }
 
@@ -189,41 +145,43 @@ public class Player : MonoBehaviour
 
         // Create a local variable to hold the base move speed so that the base speed doesn't get altered.
         float moveSpeed = baseMoveSpeed;
+        
 
         // Check if the sprint key is being held.
-        if (!sprint)
-        {
+        //if (!sprint)
+        //{
             // Check if stamina needs to be regen-ed
-            if (currentStamina < totalStamina)
-            {
+            //if (currentStamina < totalStamina)
+            //{
                 // Regen stamina when not sprinting
-                currentStamina += staminaRegen * Time.deltaTime;
-            }
-        }
+               // currentStamina += staminaRegen * Time.deltaTime;
+            //}
+        //}
         // Else, check if there is stamina to sprint
-        else if (currentStamina > 0)
-        {
+        //else if (currentStamina > 0)
+        //{
             // Multiply the move speed by the sprint factor
-            moveSpeed *= sprintFactor;
+            //moveSpeed *= sprintFactor;
 
             // Check if the player is moving
-            if (movementVector.sqrMagnitude > 0)
-            {
+            //if (movementVector.sqrMagnitude > 0)
+            //{
                 // Drain stamina while sprinting
-                currentStamina -= sprintDrainRate * Time.deltaTime;
-            }
+                //currentStamina -= sprintDrainRate * Time.deltaTime;
+            //}
 
-            else if (currentStamina < totalStamina)
-            {
+            //else if (currentStamina < totalStamina)
+            //{
                 // Regen stamina when not sprinting
-                currentStamina += staminaRegen * Time.deltaTime;
-            }
-        }
+                //currentStamina += staminaRegen * Time.deltaTime;
+            //}
+       // }
         
         //staminaBar.size = currentStamina / totalStamina;
 
         // Apply the movement vector multiplied by movement speed to the player's position.
         transform.position += movementVector * moveSpeed * Time.deltaTime;
+        
     }
 
     /// <summary>
@@ -266,7 +224,7 @@ public class Player : MonoBehaviour
         {
             currentHealth -= damage;
             Debug.Log(damage);
-            healthBar.size = currentHealth / totalHealth;
+            //healthBar.size = currentHealth / totalHealth;
      
             if(currentHealth < 0)
             {
@@ -287,8 +245,8 @@ public class Player : MonoBehaviour
         
 
         currentHealth = totalHealth;
-        currentStamina = totalStamina;
-        healthBar.size = 1;
+        //currentStamina = totalStamina;
+        //healthBar.size = 1;
         
 
         playerAnimator.SetBool("PlayerDead", false);
@@ -308,25 +266,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called when a collision is detected
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Ground")
-        {
-            canJump = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            canJump = false;
-        }
-    }
 
     /// <summary>
     /// Called when the Look action is detected.
@@ -364,10 +303,10 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Called when the Sprint action is detected.
     /// </summary>
-    void OnSprint()
-    {
-        sprint = !sprint;
-    }
+    //void OnSprint()
+    //{
+    //    sprint = !sprint;
+    //}
 
     /// <summary>
     /// Called when the Pause action is detected.
@@ -380,14 +319,14 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Called when the Jump action is detected.
     /// </summary>
-    void OnJump()
-    {
-        if(currentStamina - jumpStaminaCost > 0 && canJump)
-        {
-            GetComponent<Rigidbody>().AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            currentStamina -= jumpStaminaCost;
-        }
-    }
+    //void OnJump()
+    //{
+    //    if(currentStamina - jumpStaminaCost > 0 && canJump)
+    //    {
+    //        GetComponent<Rigidbody>().AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    //        currentStamina -= jumpStaminaCost;
+    //    }
+    //}
 
     #endregion
 }
