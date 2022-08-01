@@ -199,7 +199,14 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
         {
             // Print the name of the object hit. For debugging purposes.
-            //.Log(hitInfo.transform.name);
+            //Debug.Log(hitInfo.transform.name);
+            if(hitInfo.transform.tag == "Switch")
+                {
+                    if(interact)
+                    {
+                        hitInfo.transform.GetComponent<Switch>().Interact();
+                    }
+                }
         }
     }
 
