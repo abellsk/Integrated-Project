@@ -16,6 +16,8 @@ public class ReceptionistAI : MonoBehaviour
 
     private int currentCheckpointIndex;
 
+    private Transform playerToChase;
+
     void Start()
     {
         receptionist = GetComponent<NavMeshAgent>();
@@ -38,6 +40,13 @@ public class ReceptionistAI : MonoBehaviour
     void SwitchState()
     {
         StartCoroutine(currentState);
+    }
+
+    public void SeePlayer(Transform player)
+    {
+        playerToChase = player;
+
+        nextState = "Chase";
     }
 
     IEnumerator Idle()
@@ -79,5 +88,22 @@ public class ReceptionistAI : MonoBehaviour
         }
 
         SwitchState();   
+    }
+
+    IEnumerator Chase()
+    {
+        while (currentState == "Chase")
+        {
+            yield return null;
+            if(playerToChase != null)
+            {
+                receptionist.SetDestination(playerToChase.position);
+            }
+            else
+            {
+                nextState = "Idle";
+            }
+        }
+        SwitchState();
     }
 }
