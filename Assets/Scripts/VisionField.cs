@@ -19,7 +19,7 @@ public class VisionField : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            attachedAI.SeePlayer(other.transform);
+            attachedAI.SeePlayer(other.transform);                                  
         }
     }
 

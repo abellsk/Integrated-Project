@@ -16,7 +16,11 @@ public class ReceptionistAI : MonoBehaviour
 
     private int currentCheckpointIndex;
 
-    private Transform playerToChase;
+    private Transform playerToApproach;
+
+    private float minimumDistance = 2f;
+
+    public float speed;
 
     void Start()
     {
@@ -44,9 +48,9 @@ public class ReceptionistAI : MonoBehaviour
 
     public void SeePlayer(Transform player)
     {
-        playerToChase = player;
+        playerToApproach = player;
 
-        nextState = "Chase";
+        //nextState = "Approach";
     }
 
     IEnumerator Idle()
@@ -89,21 +93,23 @@ public class ReceptionistAI : MonoBehaviour
 
         SwitchState();   
     }
-
-    IEnumerator Chase()
+    /*
+    IEnumerator Approach()
     {
-        while (currentState == "Chase")
+        while (currentState == "Approach")
         {
+            Debug.Log("now approach");
             yield return null;
-            if(playerToChase != null)
+            if (Vector3.Distance(transform.position, playerToApproach.position) < minimumDistance)
             {
-                receptionist.SetDestination(playerToChase.position);
+                transform.position = Vector3.MoveTowards(transform.position, playerToApproach.position, speed * Time.deltaTime);
             }
             else
             {
-                nextState = "Idle";
+                Debug.Log("hello welcome hotel 81");
             }
         }
-        SwitchState();
+        SwitchState();      
     }
+    */
 }
