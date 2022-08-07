@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Switch
+  - Bell
   layers:
   - Default
   - TransparentFX
