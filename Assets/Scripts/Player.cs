@@ -105,9 +105,16 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Bell Ring Variables
     /// </summary>
-    private int bellRing = 0;
+    private bool oneRing = false;
+    private bool twoRing = false;
+    private bool threeRing = false;
+    private bool fourRing = false;
+    private bool fiveRing = false;
+    private bool sixRing = false;
 
-
+    float msgTimer = 0f;
+    float interactTimer = 0f;
+    private int bellRungCount = 0;
 
     /// <summary>
     /// Sets up default values/actions for the Player
@@ -230,11 +237,49 @@ public class Player : MonoBehaviour
             {
                 if(interact)
                 {
-                    bellRing++;
-                    if(bellRing == 1)
+                    bellRungCount++;
+                    if (bellRungCount == 1)
                     {
-                        firstRing.SetActive(true);
+                        oneRing = true;
+                        if (oneRing)
+                        {
+                            msgTimer += Time.deltaTime;
+                            interactTimer += Time.deltaTime;
+                            firstRing.SetActive(true);
+                            interact = true;
+                            Debug.Log(msgTimer);
+                            if (msgTimer >= 2.0f)
+                            {
+                                firstRing.SetActive(false);
+                                msgTimer = 0f;
+                            }
+                            if (interactTimer >= 10f)
+                            {
+                                interact = false;
+                            }
+                        }
                     }
+                    if (bellRungCount == 2)
+                    {
+                        twoRing = true;
+                        if (twoRing)
+                        {
+                            msgTimer += Time.deltaTime;
+                            interactTimer += Time.deltaTime;
+                            secondRing.SetActive(true);
+                            interact = true;
+                            if (msgTimer >= 2.0f)
+                            {
+                                secondRing.SetActive(false);
+                                msgTimer = 0f;
+                            }
+                            if (interactTimer >= 10f)
+                            {
+                                interact = false;
+                            }
+                        }
+                    }
+
                 }
             }
         }
@@ -331,11 +376,13 @@ public class Player : MonoBehaviour
 
     /// <summary>
     /// Called when the Fire action is detected.
-    /// </summary>
+    /// </summary>                                  
     void OnFire()
     {
         interact = true;
     }
+
+
 
     /// <summary>
     /// Called when the Sprint action is detected.
