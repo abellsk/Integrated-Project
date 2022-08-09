@@ -240,48 +240,32 @@ public class Player : MonoBehaviour
                     bellRungCount++;
                     if (bellRungCount == 1)
                     {
-                        oneRing = true;
-                        if (oneRing)
-                        {
-                            msgTimer += Time.deltaTime;
-                            interactTimer += Time.deltaTime;
-                            firstRing.SetActive(true);
-                            interact = true;
-                            Debug.Log(msgTimer);
-                            if (msgTimer >= 2.0f)
-                            {
-                                firstRing.SetActive(false);
-                                msgTimer = 0f;
-                            }
-                            if (interactTimer >= 10f)
-                            {
-                                interact = false;
-                            }
-                        }
+                        Debug.Log(bellRungCount);
+                        gameObject.tag = "DisabledBell";
+                        Debug.Log(gameObject.tag);   
                     }
-                    if (bellRungCount == 2)
+                    if (bellRungCount == 2 && gameObject.tag == "Bell")
                     {
-                        twoRing = true;
-                        if (twoRing)
-                        {
-                            msgTimer += Time.deltaTime;
-                            interactTimer += Time.deltaTime;
-                            secondRing.SetActive(true);
-                            interact = true;
-                            if (msgTimer >= 2.0f)
-                            {
-                                secondRing.SetActive(false);
-                                msgTimer = 0f;
-                            }
-                            if (interactTimer >= 10f)
-                            {
-                                interact = false;
-                            }
-                        }
+                        Debug.Log(bellRungCount);
+                        gameObject.tag = "DisabledBell";
+                        Debug.Log(gameObject.tag);
                     }
+                    else
+                    {
+                        Debug.Log(gameObject.tag);
+                    }
+
 
                 }
             }
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        // to reset bell
+        if (collision.gameObject.tag == "EventOne")
+        {
+            Debug.Log("bell has been reset");
         }
     }
 
