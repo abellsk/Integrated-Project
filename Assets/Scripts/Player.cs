@@ -93,6 +93,23 @@ public class Player : MonoBehaviour
     public Animator playerAnimator;
 
     /// <summary>
+    /// TextMeshVariables
+    /// </summary>
+    public GameObject firstRing;
+    public GameObject secondRing;
+    public GameObject thirdRing;
+    public GameObject fourthRing;
+    public GameObject fifthRing;
+    public GameObject sixthRing;
+
+    /// <summary>
+    /// Bell Ring Variables
+    /// </summary>
+    private int bellRing = 0;
+
+
+
+    /// <summary>
     /// Sets up default values/actions for the Player
     /// </summary>
     private void Awake()
@@ -207,6 +224,19 @@ public class Player : MonoBehaviour
                         hitInfo.transform.GetComponent<Switch>().Interact();
                     }
                 }
+
+            // Show bell has been rung text
+            if(hitInfo.transform.tag == "Bell")
+            {
+                if(interact)
+                {
+                    bellRing++;
+                    if(bellRing == 1)
+                    {
+                        firstRing.SetActive(true);
+                    }
+                }
+            }
         }
     }
 
