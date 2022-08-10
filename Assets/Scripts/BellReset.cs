@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BellReset : MonoBehaviour
 {
-
-    public static BellReset action;
     public GameObject Bell;
 
     static string tagBell = "Bell";
@@ -14,9 +12,7 @@ public class BellReset : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Bell has been reset.");
             Bell.gameObject.tag = tagBell;
         }
     }
-
 }

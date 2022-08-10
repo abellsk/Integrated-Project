@@ -63,13 +63,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public float currentHealth;
 
-    /// <summary>
-    /// The UI healthbar of the player.
-    /// </summary>
-    //public Scrollbar healthBar;
-
-    //public Scrollbar staminaBar;
-
     #endregion
 
     /// <summary>
@@ -105,16 +98,9 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Bell Ring Variables
     /// </summary>
-    private bool oneRing = false;
-    private bool twoRing = false;
-    private bool threeRing = false;
-    private bool fourRing = false;
-    private bool fiveRing = false;
-    private bool sixRing = false;
-
     float msgTimer = 0f;
-    float interactTimer = 0f;
     private int bellRungCount = 0;
+    bool messagePop = false;
 
     /// <summary>
     /// Sets up default values/actions for the Player
@@ -134,12 +120,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(!isDead)
-        //{
+        if(!isDead)
+        {
             Rotation();
             Movement();
             Raycasting();
-        //}
+            MsgTimer();
+        }
         interact = false;
     }
 
@@ -170,39 +157,6 @@ public class Player : MonoBehaviour
         // Create a local variable to hold the base move speed so that the base speed doesn't get altered.
         float moveSpeed = baseMoveSpeed;
         
-
-        // Check if the sprint key is being held.
-        //if (!sprint)
-        //{
-            // Check if stamina needs to be regen-ed
-            //if (currentStamina < totalStamina)
-            //{
-                // Regen stamina when not sprinting
-               // currentStamina += staminaRegen * Time.deltaTime;
-            //}
-        //}
-        // Else, check if there is stamina to sprint
-        //else if (currentStamina > 0)
-        //{
-            // Multiply the move speed by the sprint factor
-            //moveSpeed *= sprintFactor;
-
-            // Check if the player is moving
-            //if (movementVector.sqrMagnitude > 0)
-            //{
-                // Drain stamina while sprinting
-                //currentStamina -= sprintDrainRate * Time.deltaTime;
-            //}
-
-            //else if (currentStamina < totalStamina)
-            //{
-                // Regen stamina when not sprinting
-                //currentStamina += staminaRegen * Time.deltaTime;
-            //}
-       // }
-        
-        //staminaBar.size = currentStamina / totalStamina;
-
         // Apply the movement vector multiplied by movement speed to the player's position.
         transform.position += movementVector * moveSpeed * Time.deltaTime;
         
@@ -225,12 +179,12 @@ public class Player : MonoBehaviour
             // Print the name of the object hit. For debugging purposes.
             //Debug.Log(hitInfo.transform.name);
             if(hitInfo.transform.tag == "Switch")
+            {
+                if(interact)
                 {
-                    if(interact)
-                    {
-                        hitInfo.transform.GetComponent<Switch>().Interact();
-                    }
+                    hitInfo.transform.GetComponent<Switch>().Interact();
                 }
+            }
 
             // Show bell has been rung text
             if(hitInfo.transform.tag == "Bell")
@@ -238,90 +192,67 @@ public class Player : MonoBehaviour
                 if(interact)
                 {
                     bellRungCount++;
-                    if (bellRungCount == 1)
+                    if (bellRungCount > 0 && hitInfo.transform.tag == "Bell")
                     {
-                        Debug.Log("The bell has been rung " + bellRungCount + " times.");
                         hitInfo.transform.tag = "DisabledBell";
-                        if(hitInfo.transform.tag == "DisabledBell")
-                        {
-                            MsgPop();
-                        }
-                       
-                       
-                        Debug.Log(hitInfo.transform.tag);   
-                    }
-                    if (bellRungCount == 2 && hitInfo.transform.tag == "Bell")
-                    {
-                        Debug.Log(bellRungCount);
-                        hitInfo.transform.tag = "DisabledBell";
-                        Debug.Log(hitInfo.transform.tag);
-                    }
-                    if (bellRungCount == 4 && hitInfo.transform.tag == "Bell")
-                    {
-                        Debug.Log(bellRungCount);
-                        hitInfo.transform.tag = "DisabledBell";
-                        Debug.Log(hitInfo.transform.tag);
-                    }
-                    if (bellRungCount == 5 && hitInfo.transform.tag == "Bell")
-                    {
-                        Debug.Log(bellRungCount);
-                        hitInfo.transform.tag = "DisabledBell";
-                        Debug.Log(hitInfo.transform.tag);
-                    }
-                    if (bellRungCount == 6 && hitInfo.transform.tag == "Bell")
-                    {
-                        Debug.Log(bellRungCount);
-                        hitInfo.transform.tag = "DisabledBell";
-                        Debug.Log(hitInfo.transform.tag);
-                    }
-                    else
-                    {
+                        messagePop = true;
                         MsgPop();
                     }
-
-
                 }
             }
         }
     }
 
+    /// <summary>
+    /// Used to check and display UI message when bell is rung.
+    /// </summary>
     void MsgPop()
     {
-        Debug.Log(msgTimer);
         if (bellRungCount == 1)
         {
             firstRing.SetActive(true);
         }
-        if (bellRungCount == 2)
+        else if (bellRungCount == 2)
         {
             secondRing.SetActive(true);
         }
-        if (bellRungCount == 3)
+        else if (bellRungCount == 3)
         {
             thirdRing.SetActive(true);
         }
-        if (bellRungCount == 4)
+        else if (bellRungCount == 4)
         {
             fourthRing.SetActive(true);
         }
-        if (bellRungCount == 5)
+        else if (bellRungCount == 5)
         {
             fifthRing.SetActive(true);
         }
-        if (bellRungCount == 6)
+        else if (bellRungCount == 6)
         {
             sixthRing.SetActive(true);
         }
-        msgTimer += Time.deltaTime;
-        if (msgTimer > 2f)
+    }
+
+    /// <summary>
+    /// Used to time the message and disable them after a peroid of time.
+    /// </summary>
+    void MsgTimer()
+    {
+        if (messagePop)
         {
-            firstRing.SetActive(false);
-            secondRing.SetActive(false);
-            thirdRing.SetActive(false);
-            fourthRing.SetActive(false);
-            fifthRing.SetActive(false);
-            sixthRing.SetActive(false);
-            msgTimer = 0;
+            msgTimer += Time.deltaTime;
+            if (msgTimer > 2f)
+            {
+                firstRing.SetActive(false);
+                secondRing.SetActive(false);
+                thirdRing.SetActive(false);
+                fourthRing.SetActive(false);
+                fifthRing.SetActive(false);
+                sixthRing.SetActive(false);
+                messagePop = false;
+                msgTimer = 0;
+            }
         }
     }
   
