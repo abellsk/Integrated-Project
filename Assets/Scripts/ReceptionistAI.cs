@@ -18,9 +18,11 @@ public class ReceptionistAI : MonoBehaviour
 
     private Transform playerToApproach;
 
-    private float minimumDistance = 2f;
+    private float minimumDistance = 0.5f;
 
     public float speed;
+
+    public GameObject welcomeTxt;
 
     void Start()
     {
@@ -50,7 +52,7 @@ public class ReceptionistAI : MonoBehaviour
     {
         playerToApproach = player;
 
-        //nextState = "Approach";
+        nextState = "Approach";
     }
 
     IEnumerator Idle()
@@ -93,23 +95,32 @@ public class ReceptionistAI : MonoBehaviour
 
         SwitchState();   
     }
-    /*
+    
     IEnumerator Approach()
     {
         while (currentState == "Approach")
         {
-            Debug.Log("now approach");
+            
             yield return null;
-            if (Vector3.Distance(transform.position, playerToApproach.position) < minimumDistance)
+            if (playerToApproach != null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, playerToApproach.position, speed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, playerToApproach.position) < minimumDistance)
+                {
+                    Debug.Log("now approach");
+                    transform.position = Vector3.MoveTowards(transform.position, playerToApproach.position, speed * Time.deltaTime);
+                    welcomeTxt.SetActive(true);
+
+                }
             }
             else
             {
-                Debug.Log("hello welcome hotel 81");
+                // nothing
+                nextState = "Idle";
             }
+
+            
         }
         SwitchState();      
     }
-    */
+    
 }

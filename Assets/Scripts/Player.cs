@@ -240,19 +240,43 @@ public class Player : MonoBehaviour
                     bellRungCount++;
                     if (bellRungCount == 1)
                     {
-                        Debug.Log(bellRungCount);
-                        gameObject.tag = "DisabledBell";
-                        Debug.Log(gameObject.tag);   
+                        Debug.Log("The bell has been rung " + bellRungCount + " times.");
+                        hitInfo.transform.tag = "DisabledBell";
+                        if(hitInfo.transform.tag == "DisabledBell")
+                        {
+                            MsgPop();
+                        }
+                       
+                       
+                        Debug.Log(hitInfo.transform.tag);   
                     }
-                    if (bellRungCount == 2 && gameObject.tag == "Bell")
+                    if (bellRungCount == 2 && hitInfo.transform.tag == "Bell")
                     {
                         Debug.Log(bellRungCount);
-                        gameObject.tag = "DisabledBell";
-                        Debug.Log(gameObject.tag);
+                        hitInfo.transform.tag = "DisabledBell";
+                        Debug.Log(hitInfo.transform.tag);
+                    }
+                    if (bellRungCount == 4 && hitInfo.transform.tag == "Bell")
+                    {
+                        Debug.Log(bellRungCount);
+                        hitInfo.transform.tag = "DisabledBell";
+                        Debug.Log(hitInfo.transform.tag);
+                    }
+                    if (bellRungCount == 5 && hitInfo.transform.tag == "Bell")
+                    {
+                        Debug.Log(bellRungCount);
+                        hitInfo.transform.tag = "DisabledBell";
+                        Debug.Log(hitInfo.transform.tag);
+                    }
+                    if (bellRungCount == 6 && hitInfo.transform.tag == "Bell")
+                    {
+                        Debug.Log(bellRungCount);
+                        hitInfo.transform.tag = "DisabledBell";
+                        Debug.Log(hitInfo.transform.tag);
                     }
                     else
                     {
-                        Debug.Log(gameObject.tag);
+                        MsgPop();
                     }
 
 
@@ -260,14 +284,47 @@ public class Player : MonoBehaviour
             }
         }
     }
-    void OnCollisionEnter(Collision collision)
+
+    void MsgPop()
     {
-        // to reset bell
-        if (collision.gameObject.tag == "EventOne")
+        Debug.Log(msgTimer);
+        if (bellRungCount == 1)
         {
-            Debug.Log("bell has been reset");
+            firstRing.SetActive(true);
+        }
+        if (bellRungCount == 2)
+        {
+            secondRing.SetActive(true);
+        }
+        if (bellRungCount == 3)
+        {
+            thirdRing.SetActive(true);
+        }
+        if (bellRungCount == 4)
+        {
+            fourthRing.SetActive(true);
+        }
+        if (bellRungCount == 5)
+        {
+            fifthRing.SetActive(true);
+        }
+        if (bellRungCount == 6)
+        {
+            sixthRing.SetActive(true);
+        }
+        msgTimer += Time.deltaTime;
+        if (msgTimer > 2f)
+        {
+            firstRing.SetActive(false);
+            secondRing.SetActive(false);
+            thirdRing.SetActive(false);
+            fourthRing.SetActive(false);
+            fifthRing.SetActive(false);
+            sixthRing.SetActive(false);
+            msgTimer = 0;
         }
     }
+  
 
     /// <summary>
     /// Used to kill the player.

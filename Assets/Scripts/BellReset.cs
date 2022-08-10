@@ -12,10 +12,10 @@ public class BellReset : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "EventOne")
+        if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("Bell has been reset.");
             Bell.gameObject.tag = tagBell;
-            Debug.Log(Bell.tag);
         }
     }
 
