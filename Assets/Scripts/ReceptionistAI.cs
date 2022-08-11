@@ -102,6 +102,7 @@ public class ReceptionistAI : MonoBehaviour
         {
             
             yield return null;
+
             if (playerToApproach != null)
             {
                 if (Vector3.Distance(transform.position, playerToApproach.position) < minimumDistance)

@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688f8c0f3a7454c438f71f14c65ee6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 1
+  sceneToLoad: 2
 --- !u!1 &329579202 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4358501323237513069, guid: 8239850e318912b409dc233ea546db58, type: 3}

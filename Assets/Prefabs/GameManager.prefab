@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0522d0c46a7d56941a199efbb2eff09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 3250016396852512724, guid: ee0e6d499e941264698750d789207cc1, type: 3}
+  playerPrefab: {fileID: 4671211115950596192, guid: ee0e6d499e941264698750d789207cc1, type: 3}
   pauseMenu: {fileID: 0}
   respawnMenu: {fileID: 0}
   completeMenu: {fileID: 0}

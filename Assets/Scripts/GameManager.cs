@@ -70,8 +70,11 @@ public class GameManager : MonoBehaviour
     /// <param name="nextScene"></param>
     void SpawnPlayerOnLoad(Scene currentScene, Scene nextScene)
     {
-        if(SceneManager.GetActiveScene().buildIndex >= 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2)
         {
+
+        }
+        else { 
             // Checking if there is any active player in the game.
             if(activePlayer == null)
             {
