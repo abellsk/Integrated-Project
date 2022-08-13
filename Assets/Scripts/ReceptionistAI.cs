@@ -14,11 +14,13 @@ public class ReceptionistAI : MonoBehaviour
 
     public Transform[] checkpoints;
 
+    public Transform[] guidePoints;
+
     private int currentCheckpointIndex;
 
     private Transform playerToApproach;
 
-    private float minimumDistance = 1f;
+    private float minimumDistance = 2f;
 
     private float speed = 0.5f;
 
@@ -47,7 +49,7 @@ public class ReceptionistAI : MonoBehaviour
     {
         StartCoroutine(currentState);
     }
-
+    
     public void SeePlayer(Transform player)
     {
         playerToApproach = player;
@@ -98,6 +100,7 @@ public class ReceptionistAI : MonoBehaviour
     
     IEnumerator Approach()
     {
+        bool hasReached = false;
         while (currentState == "Approach")
         {
             
@@ -109,19 +112,45 @@ public class ReceptionistAI : MonoBehaviour
                 {
                     Debug.Log("now approach");
                     transform.position = Vector3.MoveTowards(transform.position, playerToApproach.position, speed * Time.deltaTime);
+                    hasReached = true;
                     welcomeTxt.SetActive(true);
-
+                    if (hasReached)
+                    {
+                        nextState = "Guiding";
+                    }
                 }
             }
-            else
-            {
-                // nothing
-                nextState = "Idle";
-            }
-
-            
         }
         SwitchState();      
+    }
+
+    IEnumerator Guiding()
+    {
+        receptionist.SetDestination(guidePoints[currentCheckpointIndex].position);
+        bool hasReached = false;
+
+        while (currentState == "Guiding")
+        {
+            yield return null;
+            if (!hasReached)
+            {
+                if (receptionist.remainingDistance <= receptionist.stoppingDistance)
+                {
+                    hasReached = true;
+
+                    nextState = "Idle";
+
+                    currentCheckpointIndex++;
+
+                    if (currentCheckpointIndex >= checkpoints.Length)
+                    {
+                        currentCheckpointIndex = 0;
+                    }
+                }
+            }
+        }
+
+        SwitchState(); 
     }
     
 }
