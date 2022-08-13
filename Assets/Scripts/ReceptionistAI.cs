@@ -18,9 +18,9 @@ public class ReceptionistAI : MonoBehaviour
 
     private Transform playerToApproach;
 
-    private float minimumDistance = 0.5f;
+    private float minimumDistance = 1f;
 
-    public float speed;
+    private float speed = 0.5f;
 
     public GameObject welcomeTxt;
 
@@ -105,7 +105,7 @@ public class ReceptionistAI : MonoBehaviour
 
             if (playerToApproach != null)
             {
-                if (Vector3.Distance(transform.position, playerToApproach.position) < minimumDistance)
+                if (Vector3.Distance(transform.position, playerToApproach.position) > minimumDistance)
                 {
                     Debug.Log("now approach");
                     transform.position = Vector3.MoveTowards(transform.position, playerToApproach.position, speed * Time.deltaTime);
