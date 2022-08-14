@@ -1226,8 +1226,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520779995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.14147875, y: 0.62, z: 3.02954}
-  m_LocalScale: {x: 2.394933, y: 0.34554827, z: 5.1449}
+  m_LocalPosition: {x: -0.14147875, y: 0.055, z: 3.02954}
+  m_LocalScale: {x: 2.394933, y: 1.5424225, z: 5.1449}
   m_Children: []
   m_Father: {fileID: 1067512654}
   m_RootOrder: 0
@@ -1307,6 +1307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedAI: {fileID: 0}
+  annieAI: {fileID: 0}
 --- !u!1001 &842075247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1480,7 +1481,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20996
+  m_Name: pb_Mesh24456
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1762,7 +1763,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067512648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 1.217, z: 11.53046}
+  m_LocalPosition: {x: 0.19, y: 1.217, z: 9.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 520779996}
