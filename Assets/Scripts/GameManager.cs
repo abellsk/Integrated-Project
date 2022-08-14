@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public GameObject completeMenu;
 
+    /// <summary>
+    /// Enabling of doors
+    /// </summary>
+    public GameObject doorOpen;
+    public GameObject doorClosed;
+
     private void Awake()
     {
         // Check whether there is an instance
@@ -185,4 +191,24 @@ public class GameManager : MonoBehaviour
     {
         completeMenu.SetActive(true);
     }
+    
+    /// <summary>
+    /// Swicth to a new active door
+    /// </summary>
+    public void ShowDoor()
+    {
+        if (doorClosed.activeSelf == true)
+        {
+            doorOpen.SetActive(true);
+            doorClosed.SetActive(false);
+        }
+        else if (doorClosed.activeSelf == false)
+        {
+            doorOpen.SetActive(false);
+            doorClosed.SetActive(true);
+        }
+    }
+
+
+
 }
