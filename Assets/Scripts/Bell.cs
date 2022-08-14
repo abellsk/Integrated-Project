@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bell : MonoBehaviour
 {
-    public static Bell action;
     public void Ring()
     {
         GetComponent<AudioSource>().Play();

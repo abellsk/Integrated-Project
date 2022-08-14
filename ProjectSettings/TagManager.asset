@@ -8,6 +8,8 @@ TagManager:
   - Bell
   - DisabledBell
   - EventOne
+  - DoorOpen
+  - DoorClosed
   layers:
   - Default
   - TransparentFX

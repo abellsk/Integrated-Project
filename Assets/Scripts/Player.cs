@@ -101,6 +101,8 @@ public class Player : MonoBehaviour
     float msgTimer = 0f;
     private int bellRungCount = 0;
     bool messagePop = false;
+    public GameObject doorOpen;
+    public GameObject doorClosed;
 
     /// <summary>
     /// Sets up default values/actions for the Player
