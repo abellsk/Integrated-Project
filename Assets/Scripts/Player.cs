@@ -192,8 +192,10 @@ public class Player : MonoBehaviour
                 if(interact)
                 {
                     bellRungCount++;
+                    
                     if (bellRungCount > 0 && hitInfo.transform.tag == "Bell")
                     {
+                        hitInfo.transform.GetComponent<Bell>().Ring();
                         hitInfo.transform.tag = "DisabledBell";
                         messagePop = true;
                         MsgPop();
