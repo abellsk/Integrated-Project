@@ -38,9 +38,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "d5faa406-ea6d-4bef-a590-7b4ab0e53cb5",
+                    "id": "eeca7e27-eba1-4799-b221-5de7803641a4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -280,12 +280,12 @@
                 },
                 {
                     "name": "",
-                    "id": "5cc2c427-528c-4889-b5b4-ddeb1b9a05f9",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "a62e2dd4-572b-49e3-a452-529ab9121348",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sprint",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

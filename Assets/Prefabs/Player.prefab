@@ -631,8 +631,6 @@ MonoBehaviour:
   fourthRing: {fileID: 8895106041416490669}
   fifthRing: {fileID: 6243606122173242657}
   sixthRing: {fileID: 1186713192612001398}
-  doorOpen: {fileID: 0}
-  doorClosed: {fileID: 0}
 --- !u!114 &2160950338938801475
 MonoBehaviour:
   m_ObjectHideFlags: 0

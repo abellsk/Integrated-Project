@@ -324,6 +324,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when a Pause event is detected
+    /// </summary>
+    void OnPause()
+    {
+        GameManager.instance.TogglePause();
+    }
+
 
     /// <summary>
     /// Called when the Look action is detected.
@@ -357,36 +365,6 @@ public class Player : MonoBehaviour
     {
         interact = true;
     }
-
-
-
-    /// <summary>
-    /// Called when the Sprint action is detected.
-    /// </summary>
-    //void OnSprint()
-    //{
-    //    sprint = !sprint;
-    //}
-
-    /// <summary>
-    /// Called when the Pause action is detected.
-    /// </summary>
-    void OnPause()
-    {
-        GameManager.instance.TogglePause();
-    }
-
-    /// <summary>
-    /// Called when the Jump action is detected.
-    /// </summary>
-    //void OnJump()
-    //{
-    //    if(currentStamina - jumpStaminaCost > 0 && canJump)
-    //    {
-    //        GetComponent<Rigidbody>().AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    //        currentStamina -= jumpStaminaCost;
-    //    }
-    //}
 
     #endregion
 }
