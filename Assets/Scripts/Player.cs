@@ -106,6 +106,14 @@ public class Player : MonoBehaviour
 
     bool heldDown = false;
 
+    /// <sumary>
+    /// To display text
+    /// </sumary>
+    public GameObject knifeFound;
+    public GameObject crowbarFound;
+    public GameObject pillsFound;
+    public GameObject axeFound;
+
     /// <summary>
     /// Sets up default values/actions for the Player
     /// </summary>
@@ -190,7 +198,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
         {
             // Print the name of the object hit. For debugging purposes.
-            //Debug.Log(hitInfo.transform.name);
+            Debug.Log(hitInfo.transform.name);
             if (hitInfo.transform.tag == "Switch")
             {
                 if(interact)
@@ -215,6 +223,49 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+
+            if (hitInfo.transform.tag == "knife")
+            {
+                if (interact)
+                {
+                    messagePop = true;
+                    knifeFound.SetActive(true);
+                    Destroy(hitInfo.transform.gameObject);
+                }
+
+            }
+
+            if (hitInfo.transform.tag == "axe")
+            {
+                if (interact)
+                {
+                    messagePop = true;
+                    axeFound.SetActive(true);
+                    Destroy(hitInfo.transform.gameObject);
+                }
+            }
+
+            if (hitInfo.transform.tag == "pills")
+            {
+                if (interact)
+                {
+                    messagePop = true;
+                    pillsFound.SetActive(true);
+                    Destroy(hitInfo.transform.gameObject);
+                }
+            }
+
+            if (hitInfo.transform.tag == "crowbar")
+            {
+                if (interact)
+                {
+                    messagePop = true;
+                    crowbarFound.SetActive(true);
+                    Destroy(hitInfo.transform.gameObject);
+                }
+            }
+
+
         }
     }
 
@@ -268,6 +319,10 @@ public class Player : MonoBehaviour
                 fourthRing.SetActive(false);
                 fifthRing.SetActive(false);
                 sixthRing.SetActive(false);
+                pillsFound.SetActive(false);
+                axeFound.SetActive(false);
+                knifeFound.SetActive(false);
+                crowbarFound.SetActive(false);
                 messagePop = false;
                 msgTimer = 0;
             }
@@ -313,13 +368,9 @@ public class Player : MonoBehaviour
         movementInput = Vector3.zero;
         rotationInput = Vector3.zero;
         headRotationInput = Vector3.zero;
-        isDead = false;
-        
+        isDead = false;    
 
         currentHealth = totalHealth;
-        //currentStamina = totalStamina;
-        //healthBar.size = 1;
-        
 
         playerAnimator.SetBool("PlayerDead", false);
     }

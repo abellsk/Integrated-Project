@@ -12,6 +12,10 @@ TagManager:
   - DoorClosed
   - Annie
   - EventTwo
+  - crowbar
+  - knife
+  - pills
+  - axe
   layers:
   - Default
   - TransparentFX
