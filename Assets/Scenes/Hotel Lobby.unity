@@ -1179,6 +1179,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4384824333074648796, guid: ee0e6d499e941264698750d789207cc1, type: 3}
     - target: {fileID: 3790058153722602212, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 7871714072431452743, guid: ee0e6d499e941264698750d789207cc1, type: 3}
+    - target: {fileID: 3790058153722602212, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
       propertyPath: playerCrosshair
       value: 
       objectReference: {fileID: 1642469503}
