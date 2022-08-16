@@ -70,6 +70,17 @@ public class GameManager : MonoBehaviour
     public GameObject locationFive;
     public GameObject locationSix;
     public GameObject locationSeven;
+    public GameObject locationEight;
+    public GameObject locationNine;
+    public GameObject locationTen;
+    public GameObject locationEleven;
+    public GameObject locationTwelve;
+    public GameObject locationThirteen;
+    public GameObject locationFourteen;
+    public GameObject locationFiveteen;
+    public GameObject locationSixteen;
+    public GameObject locationSeventeen;
+    public GameObject locationEightteen;
 
     /// <summary>
     /// assign mannequins to teleport them
@@ -81,6 +92,18 @@ public class GameManager : MonoBehaviour
     public GameObject mannequinFive;
     public GameObject mannequinSix;
     public GameObject mannequinSeven;
+    public GameObject mannequinEight;
+    public GameObject mannequinNine;
+    public GameObject mannequinTen;
+    public GameObject mannequinEleven;
+    public GameObject mannequinTwelve;
+    public GameObject mannequinThirteen;
+    public GameObject mannequinFourteen;
+    public GameObject mannequinFiveteen;
+    public GameObject mannequinSixteen;
+    public GameObject mannequinSeventeen;
+    public GameObject mannequinEighteen;
+
 
     /// <summary>
     /// Crosshairfor the player
@@ -271,5 +294,16 @@ public class GameManager : MonoBehaviour
         mannequinFour.transform.position = locationFour.transform.position;
         mannequinSix.transform.position = locationSix.transform.position;
         mannequinSeven.transform.position = locationSeven.transform.position;
+        mannequinEight.transform.position = locationEight.transform.position;
+        mannequinNine.transform.position = locationNine.transform.position;
+        mannequinTen.transform.position = locationTen.transform.position;
+        mannequinEleven.transform.position = locationEleven.transform.position;
+        mannequinTwelve.transform.position = locationTwelve.transform.position;
+        mannequinThirteen.transform.position = locationThirteen.transform.position;
+        mannequinFourteen.transform.position = locationFourteen.transform.position;
+        mannequinFiveteen.transform.position = locationFiveteen.transform.position;
+        mannequinSixteen.transform.position = locationSixteen.transform.position;
+        mannequinSeventeen.transform.position = locationSeventeen.transform.position;
+        mannequinEighteen.transform.position = locationEightteen.transform.position;
     }
 }
