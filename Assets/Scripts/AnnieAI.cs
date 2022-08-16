@@ -11,15 +11,21 @@ public class AnnieAI : MonoBehaviour
 
     public float idleTime;
 
-    private NavMeshAgent annie;
-
     public Transform[] checkpoints;
 
     private int currentCheckpointIndex;
 
-    private Transform playerToApproach;
+    NavMeshAgent annie;
+
+    [SerializeField] 
+    Transform playerToChase;
 
     private float speed = 0.5f;
+
+    private void Awake()
+    {
+        annie = GetComponent<NavMeshAgent>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,13 +36,14 @@ public class AnnieAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerToChase != null)
+        {
+            annie.SetDestination(playerToChase.position);
+        }
     }
 
-    public void SeePlayer(Transform player)
+    public void SetThingToChase(Transform thingToSet)
     {
-        playerToApproach = player;
-
-        nextState = "Approach";
+        playerToChase = thingToSet;
     }
 }

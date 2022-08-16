@@ -85,6 +85,8 @@ public class Player : MonoBehaviour
     /// </summary>
     public Animator playerAnimator;
 
+
+
     /// <summary>
     /// TextMeshVariables
     /// </summary>
@@ -101,7 +103,11 @@ public class Player : MonoBehaviour
     float msgTimer = 0f;
     private int bellRungCount = 0;
     bool messagePop = false;
- 
+
+    bool heldDown = false;
+
+    [SerializeField] AnnieAI genericChaser;
+
 
     /// <summary>
     /// Sets up default values/actions for the Player
@@ -111,11 +117,6 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         currentHealth = totalHealth;
-        /*
-        currentStamina = totalStamina;
-        jumpStaminaCost = totalStamina * 0.3f;
-        */
-        
     }
 
     // Update is called once per frame
@@ -128,6 +129,21 @@ public class Player : MonoBehaviour
             Raycasting();
             MsgTimer();
         }
+
+        if (heldDown)
+        {
+            GameManager.instance.showCamera();
+        }
+        else if (!heldDown)
+        {
+            GameManager.instance.offCamera();  
+        }
+
+        if (bellRungCount == 4)
+        {
+            genericChaser.SetThingToChase(transform);
+        }
+
         interact = false;
     }
 
@@ -179,7 +195,7 @@ public class Player : MonoBehaviour
         {
             // Print the name of the object hit. For debugging purposes.
             //Debug.Log(hitInfo.transform.name);
-            if(hitInfo.transform.tag == "Switch")
+            if (hitInfo.transform.tag == "Switch")
             {
                 if(interact)
                 {
@@ -223,6 +239,7 @@ public class Player : MonoBehaviour
         else if (bellRungCount == 3)
         {
             thirdRing.SetActive(true);
+            GameManager.instance.mannequinTeleport();
         }
         else if (bellRungCount == 4)
         {
@@ -366,5 +383,13 @@ public class Player : MonoBehaviour
         interact = true;
     }
 
+    /// <summary>
+    /// Called when the Video action is detected
+    /// </summary>
+
+    void OnHold()
+    {
+        heldDown = !heldDown;
+    }
     #endregion
 }

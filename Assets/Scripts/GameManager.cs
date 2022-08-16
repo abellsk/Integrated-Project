@@ -46,6 +46,46 @@ public class GameManager : MonoBehaviour
     public GameObject doorOpen;
     public GameObject doorClosed;
 
+    ///<summary>
+    /// The Camera Ui of the player
+    /// </summary>
+
+    public GameObject cameraFourbatt;
+    public GameObject cameraThreebatt;
+    public GameObject cameraTwobatt;
+    public GameObject cameraOnebatt;
+
+    /// <summary>
+    /// Timer to show how long it took for the player
+    /// </summary>
+    float runTimer = 0f;
+
+    /// <summary>
+    /// Teleport location for mannequins
+    /// </summary>
+    public GameObject locationOne;
+    public GameObject locationTwo;
+    public GameObject locationThree;
+    public GameObject locationFour;
+    public GameObject locationFive;
+    public GameObject locationSix;
+    public GameObject locationSeven;
+
+    /// <summary>
+    /// assign mannequins to teleport them
+    /// </summary>
+    public GameObject mannequinOne;
+    public GameObject mannequinTwo;
+    public GameObject mannequinThree;
+    public GameObject mannequinFour;
+    public GameObject mannequinFive;
+    public GameObject mannequinSix;
+    public GameObject mannequinSeven;
+
+
+
+
+
     private void Awake()
     {
         // Check whether there is an instance
@@ -135,6 +175,7 @@ public class GameManager : MonoBehaviour
     {
         LoadScene(1);
         ToggleOffRespawnMenu();
+        Switch.instance.runTime();
     }
 
     /// <summary>
@@ -209,6 +250,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void showCamera()
+    {
+        cameraFourbatt.SetActive(true);
+    }
+
+    public void offCamera()
+    {
+        cameraFourbatt.SetActive(false );
+    }
+
+    public void mannequinTeleport()
+    {
+        mannequinOne.transform.position = locationOne.transform.position;
+        mannequinTwo.transform.position = locationTwo.transform.position;
+        mannequinFive.transform.position = locationFive.transform.position;
+        mannequinThree.transform.position = locationThree.transform.position;
+        mannequinFour.transform.position = locationFour.transform.position;
+        mannequinSix.transform.position = locationSix.transform.position;
+        mannequinSeven.transform.position = locationSeven.transform.position;
+    }
 
 
 }

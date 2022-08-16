@@ -11,6 +11,7 @@ TagManager:
   - DoorOpen
   - DoorClosed
   - Annie
+  - EventTwo
   layers:
   - Default
   - TransparentFX
