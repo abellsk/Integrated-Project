@@ -29,7 +29,6 @@ public class ReceptionistAI : MonoBehaviour
     void Start()
     {
         receptionist = GetComponent<NavMeshAgent>();
-
         currentState = "Idle";
         nextState = currentState;
         SwitchState();

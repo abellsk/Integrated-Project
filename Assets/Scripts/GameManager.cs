@@ -82,9 +82,10 @@ public class GameManager : MonoBehaviour
     public GameObject mannequinSix;
     public GameObject mannequinSeven;
 
-
-
-
+    /// <summary>
+    /// Crosshairfor the player
+    /// </summary>
+    public GameObject playerCrosshair;
 
     private void Awake()
     {
@@ -174,8 +175,9 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         LoadScene(1);
-        ToggleOffRespawnMenu();
-        Switch.instance.runTime();
+        //ToggleOffRespawnMenu();
+        //Switch.instance.runTime();
+        playerCrosshair.SetActive(true); 
     }
 
     /// <summary>
@@ -257,7 +259,7 @@ public class GameManager : MonoBehaviour
 
     public void offCamera()
     {
-        cameraFourbatt.SetActive(false );
+        cameraFourbatt.SetActive(false);
     }
 
     public void mannequinTeleport()
@@ -270,6 +272,4 @@ public class GameManager : MonoBehaviour
         mannequinSix.transform.position = locationSix.transform.position;
         mannequinSeven.transform.position = locationSeven.transform.position;
     }
-
-
 }

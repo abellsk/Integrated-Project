@@ -30,13 +30,28 @@ public class AnnieAI : MonoBehaviour
     private void Awake()
     {
         annie = GetComponent<NavMeshAgent>();
-        activEplayer = GameManager.instance.activePlayer;
+        
+        if (instance != null && instance != this)
+        {
+            // If true, I'm not needed and can be destroyed.
+            Destroy(gameObject);
+        }
+        else
+        {
+            //Set the GameManager to not be destroyed when scenes are loaded.
+            DontDestroyOnLoad(gameObject);
+
+            
+
+            // Set myself as the instance
+            instance = this;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        activEplayer = GameManager.instance.activePlayer;
     }
 
     // Update is called once per frame
@@ -52,4 +67,12 @@ public class AnnieAI : MonoBehaviour
     {
         playerToChase = thingToSet;
     }
+
+    
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (gameObject.
+    }
+    */
 }

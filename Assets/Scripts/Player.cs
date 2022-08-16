@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     /// Bell Ring Variables
     /// </summary>
     float msgTimer = 0f;
-    private int bellRungCount = 0;
+    public int bellRungCount = 0;
     bool messagePop = false;
 
     bool heldDown = false;
@@ -125,22 +125,21 @@ public class Player : MonoBehaviour
             Movement();
             Raycasting();
             MsgTimer();
-        }
 
-        if (heldDown)
-        {
-            GameManager.instance.showCamera();
-        }
-        else if (!heldDown)
-        {
-            GameManager.instance.offCamera();  
-        }
+            if (heldDown)
+            {
+                GameManager.instance.showCamera();
+            }
+            else if (!heldDown)
+            {
+                GameManager.instance.offCamera();  
+            }
 
-        if (bellRungCount == 4)
-        {
-            AnnieAI.instance.SetThingToChase(transform);
+            if (bellRungCount == 4)
+            {
+                AnnieAI.instance.SetThingToChase(transform);
+            }
         }
-
         interact = false;
     }
 
@@ -245,6 +244,7 @@ public class Player : MonoBehaviour
         else if (bellRungCount == 5)
         {
             fifthRing.SetActive(true);
+            MannequinnTeleport.instance.OnBecameInvisible();    
         }
         else if (bellRungCount == 6)
         {
