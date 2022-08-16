@@ -106,9 +106,6 @@ public class Player : MonoBehaviour
 
     bool heldDown = false;
 
-    [SerializeField] AnnieAI genericChaser;
-
-
     /// <summary>
     /// Sets up default values/actions for the Player
     /// </summary>
@@ -141,7 +138,7 @@ public class Player : MonoBehaviour
 
         if (bellRungCount == 4)
         {
-            genericChaser.SetThingToChase(transform);
+            AnnieAI.instance.SetThingToChase(transform);
         }
 
         interact = false;

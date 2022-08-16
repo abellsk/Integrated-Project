@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Store the active player in the game.
     /// </summary>
-    private Player activePlayer;
+    public Player activePlayer;
 
     /// <summary>
     /// Store the active GameManager.
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
     /// <param name="nextScene"></param>
     void SpawnPlayerOnLoad(Scene currentScene, Scene nextScene)
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
 
         }

@@ -204,7 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &259333272
 GameObject:
@@ -278,7 +278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311751336
 GameObject:
@@ -371,7 +371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &796315284
 GameObject:
@@ -573,9 +573,9 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799875486}
   m_CullTransparentMesh: 1
---- !u!114 &925941727 stripped
+--- !u!114 &1147296529 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2741832910378711875, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1432635918792669702, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
   m_PrefabInstance: {fileID: 1555692828}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -804,6 +804,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1432635918792669702, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
+      propertyPath: doorOpen
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432635918792669702, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
+      propertyPath: doorClosed
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653737233443960294, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2741832910341371498, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -852,6 +864,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2741832910378711875, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 4384824333074648796, guid: ee0e6d499e941264698750d789207cc1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a28d9a2812fecfe47b7f1b78044a37e9, type: 3}
 --- !u!1 &1580149462
@@ -1029,7 +1045,7 @@ RectTransform:
   - {fileID: 1888043046}
   - {fileID: 1326021029}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1254,7 +1270,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 925941727}
+      - m_Target: {fileID: 1147296529}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1

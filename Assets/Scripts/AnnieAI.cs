@@ -13,6 +13,8 @@ public class AnnieAI : MonoBehaviour
 
     public Transform[] checkpoints;
 
+    public static AnnieAI instance;
+
     private int currentCheckpointIndex;
 
     NavMeshAgent annie;
@@ -20,11 +22,15 @@ public class AnnieAI : MonoBehaviour
     [SerializeField] 
     Transform playerToChase;
 
-    private float speed = 0.5f;
+
+    Player activEplayer = null;
+
+    //private float speed = 0.5f;
 
     private void Awake()
     {
         annie = GetComponent<NavMeshAgent>();
+        activEplayer = GameManager.instance.activePlayer;
     }
 
     // Start is called before the first frame update
@@ -38,7 +44,7 @@ public class AnnieAI : MonoBehaviour
     {
         if (playerToChase != null)
         {
-            annie.SetDestination(playerToChase.position);
+            annie.SetDestination(activEplayer.transform.position);
         }
     }
 
