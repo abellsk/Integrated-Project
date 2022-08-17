@@ -10,7 +10,7 @@ public class DoorScare : MonoBehaviour
 
     private void Start()
     {
-        bellringCountchecker = Player.player.bellRungCount;
+        //bellringCountchecker = Player.player.bellRungCount;
     }
 
     private void Update()

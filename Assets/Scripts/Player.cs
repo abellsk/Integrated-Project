@@ -113,6 +113,8 @@ public class Player : MonoBehaviour
     public GameObject crowbarFound;
     public GameObject pillsFound;
     public GameObject axeFound;
+    public GameObject bibleFound;
+    public GameObject phoneFound;
 
     /// <summary>
     /// Sets up default values/actions for the Player
@@ -145,7 +147,7 @@ public class Player : MonoBehaviour
 
             if (bellRungCount == 4)
             {
-                AnnieAI.instance.SetThingToChase(transform);
+                //AnnieAI.instance.SetThingToChase(transform);
             }
         }
         interact = false;
@@ -265,6 +267,26 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if (hitInfo.transform.tag == "bible")
+            {
+                if (interact)
+                {
+                    messagePop = true;
+                    bibleFound.SetActive(true);
+                    Destroy(hitInfo.transform.gameObject);
+                }
+            }
+
+            if (hitInfo.transform.tag == "phone")
+            {
+                if (interact)
+                {
+                    messagePop = true;
+                    phoneFound.SetActive(true);
+                    Destroy(hitInfo.transform.gameObject);
+                }
+            }
+
 
         }
     }
@@ -323,6 +345,8 @@ public class Player : MonoBehaviour
                 axeFound.SetActive(false);
                 knifeFound.SetActive(false);
                 crowbarFound.SetActive(false);
+                bibleFound.SetActive(false);
+                phoneFound.SetActive(false);
                 messagePop = false;
                 msgTimer = 0;
             }

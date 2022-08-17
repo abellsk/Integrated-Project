@@ -16,6 +16,8 @@ TagManager:
   - knife
   - pills
   - axe
+  - bible
+  - phone
   layers:
   - Default
   - TransparentFX
