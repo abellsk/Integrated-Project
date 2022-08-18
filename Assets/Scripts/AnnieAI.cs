@@ -69,10 +69,7 @@ public class AnnieAI : MonoBehaviour
     }
 
     
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (gameObject.
-    }
-    */
+    
+    
+    
 }

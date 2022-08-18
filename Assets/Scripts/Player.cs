@@ -85,8 +85,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public Animator playerAnimator;
 
-
-
     /// <summary>
     /// TextMeshVariables
     /// </summary>
@@ -98,13 +96,13 @@ public class Player : MonoBehaviour
     public GameObject sixthRing;
 
     /// <summary>
-    /// Bell Ring Variables
+    /// Variables
     /// </summary>
     float msgTimer = 0f;
-    public int bellRungCount = 0;
+    public static int bellRungCount = 0;
     bool messagePop = false;
-
     bool heldDown = false;
+    public static int evidenceCollected = 0;
 
     /// <sumary>
     /// To display text
@@ -116,14 +114,13 @@ public class Player : MonoBehaviour
     public GameObject bibleFound;
     public GameObject phoneFound;
 
+
     /// <summary>
     /// Sets up default values/actions for the Player
     /// </summary>
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        
-        currentHealth = totalHealth;
     }
 
     // Update is called once per frame
@@ -145,9 +142,9 @@ public class Player : MonoBehaviour
                 GameManager.instance.offCamera();  
             }
 
-            if (bellRungCount == 4)
+            if (bellRungCount == 6)
             {
-                //AnnieAI.instance.SetThingToChase(transform);
+                AnnieAI.instance.SetThingToChase(transform);
             }
         }
         interact = false;
@@ -200,7 +197,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactionDistance))
         {
             // Print the name of the object hit. For debugging purposes.
-            Debug.Log(hitInfo.transform.name);
+            //Debug.Log(hitInfo.transform.name);
             if (hitInfo.transform.tag == "Switch")
             {
                 if(interact)
@@ -230,6 +227,7 @@ public class Player : MonoBehaviour
             {
                 if (interact)
                 {
+                    evidenceCollected++;
                     messagePop = true;
                     knifeFound.SetActive(true);
                     Destroy(hitInfo.transform.gameObject);
@@ -241,6 +239,7 @@ public class Player : MonoBehaviour
             {
                 if (interact)
                 {
+                    evidenceCollected++;
                     messagePop = true;
                     axeFound.SetActive(true);
                     Destroy(hitInfo.transform.gameObject);
@@ -251,6 +250,7 @@ public class Player : MonoBehaviour
             {
                 if (interact)
                 {
+                    evidenceCollected++;
                     messagePop = true;
                     pillsFound.SetActive(true);
                     Destroy(hitInfo.transform.gameObject);
@@ -261,6 +261,7 @@ public class Player : MonoBehaviour
             {
                 if (interact)
                 {
+                    evidenceCollected++;
                     messagePop = true;
                     crowbarFound.SetActive(true);
                     Destroy(hitInfo.transform.gameObject);
@@ -271,6 +272,7 @@ public class Player : MonoBehaviour
             {
                 if (interact)
                 {
+                    evidenceCollected++;
                     messagePop = true;
                     bibleFound.SetActive(true);
                     Destroy(hitInfo.transform.gameObject);
@@ -281,9 +283,42 @@ public class Player : MonoBehaviour
             {
                 if (interact)
                 {
+                    evidenceCollected++;
                     messagePop = true;
                     phoneFound.SetActive(true);
                     Destroy(hitInfo.transform.gameObject);
+                }
+            }
+
+            if (hitInfo.transform.tag == "door")
+            {
+                if (interact)
+                {
+                    GameManager.instance.doorOpenAnimation();
+                }
+            }
+
+            if (hitInfo.transform.tag == "doorTwo")
+            {
+                if (interact)
+                {
+                    GameManager.instance.doorTwoOpenAnimation();
+                }
+            }
+
+            if (hitInfo.transform.tag == "finishDoor")
+            {
+                if (interact && bellRungCount >= 5)
+                {
+                    GameManager.instance.finshedDoorAnim();
+                }
+            }
+
+            if (hitInfo.transform.tag == "anotherdor")
+            {
+                if (interact && bellRungCount >= 5)
+                {
+                    GameManager.instance.anotherDoorAnim();
                 }
             }
 
@@ -313,16 +348,22 @@ public class Player : MonoBehaviour
         else if (bellRungCount == 4)
         {
             fourthRing.SetActive(true);
+            GameManager.instance.resetDoor();
         }
         else if (bellRungCount == 5)
         {
             fifthRing.SetActive(true);
-            MannequinnTeleport.instance.OnBecameInvisible();    
+            GameManager.instance.offAnnie();
+            GameManager.instance.resetDoor();
         }
         else if (bellRungCount == 6)
         {
-            sixthRing.SetActive(true);
+            sixthRing.SetActive(true);  
+            //MannequinnTeleport.instance.OnBecameInvisible();    
+            GameManager.instance.doorTopOpenAnimation();
+            GameManager.instance.showDecals();
         }
+        
     }
 
     /// <summary>
@@ -352,6 +393,14 @@ public class Player : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "annieAI")
+        {
+            KillPlayer();   
+        }
+    }
+    
   
 
     /// <summary>
@@ -360,8 +409,9 @@ public class Player : MonoBehaviour
     void KillPlayer()
     {
         isDead = true;
-        playerAnimator.applyRootMotion = true;
-        playerAnimator.SetBool("PlayerDead", true);
+        Debug.Log("dead");
+        //playerAnimator.applyRootMotion = true;
+        //playerAnimator.SetBool("PlayerDead", true);
         GameManager.instance.ToggleRespawnMenu();
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorScare : MonoBehaviour
 {
     public Animator doorAnimator;
+    public Animator annieFirstScare;
 
     int bellringCountchecker;
 
@@ -15,22 +16,15 @@ public class DoorScare : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(bellringCountchecker);
+        bellringCountchecker = Player.bellRungCount;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && bellringCountchecker == 4)
         {
             doorAnimator.SetBool("PressurePlate", true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            doorAnimator.SetBool("PressurePlate", false);
+            annieFirstScare.SetBool("TriggerPlate", true);
         }
     }
 }

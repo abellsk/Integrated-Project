@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -104,11 +105,62 @@ public class GameManager : MonoBehaviour
     public GameObject mannequinSeventeen;
     public GameObject mannequinEighteen;
 
+    /// <summary>
+    /// animator for door
+    /// </summary>
+    public Animator doorAnimatorOne;
+    //public Animator doorAnimatorTwo;
+    public Animator doorOneAnimatorTop;
+    public Animator doorTwoAnimatorTop;
+    public Animator doorThreeAnimatorTop;
+    public Animator finishedDoor;
+    public Animator anotherDoor;
+
+    /// <summary>
+    /// to store fake annie to scare 
+    /// </summary>
+    public GameObject fakeAnnie;
+
+    /// <summary>
+    /// To display decals
+    /// </summary>
+    public GameObject decalOne;
+    public GameObject decalTwo;
+    public GameObject decalThree;
+    public GameObject decalFour;
+    public GameObject decalFive;
+    public GameObject decalSix;
+    public GameObject decalSeven;
+    public GameObject decalEight;
+    public GameObject decalNine;
+    public GameObject decalTen;
+    public GameObject decalEleven;
+    public GameObject decalTwelve;
+
+    /// <summary>
+    /// to replace the door
+    /// </summary>
+    public GameObject movedDoor;
+    public GameObject correctDoor;
+    public GameObject normalDoor;
+
 
     /// <summary>
     /// Crosshairfor the player
     /// </summary>
     public GameObject playerCrosshair;
+
+    /// <summary>
+    /// to update how many evidence has been collected
+    /// </summary>
+    int evidenceChecker;
+    public GameObject evidenceZero;
+    public GameObject evidenceFirst;
+    public GameObject evidenceSecond;
+    public GameObject evidenceThird;
+    public GameObject evidenceFour;
+    public GameObject evidenceFive;
+    public GameObject evidenceSix;
 
     private void Awake()
     {
@@ -130,6 +182,41 @@ public class GameManager : MonoBehaviour
 
             // Set myself as the instance
             instance = this;
+        }
+    }
+
+    private void Update()
+    {
+        evidenceChecker = Player.evidenceCollected;
+        if (evidenceChecker == 1)
+        {
+            evidenceZero.SetActive(false);
+            evidenceFirst.SetActive(true);
+        }
+        else if (evidenceChecker == 2)
+        {
+            evidenceFirst.SetActive(false);
+            evidenceSecond.SetActive(true);
+        }
+        else if (evidenceChecker == 3)
+        {
+            evidenceSecond.SetActive(false);
+            evidenceThird.SetActive(true);
+        }
+        else if (evidenceChecker == 4)
+        {
+            evidenceThird.SetActive(false);
+            evidenceFour.SetActive(true);
+        }
+        else if (evidenceChecker == 5)
+        {
+            evidenceFour.SetActive(false);
+            evidenceFive.SetActive(true);
+        }
+        else if (evidenceChecker == 6)
+        {
+            evidenceFive.SetActive(false);
+            evidenceSix.SetActive(true);
         }
     }
 
@@ -305,5 +392,68 @@ public class GameManager : MonoBehaviour
         mannequinSixteen.transform.position = locationSixteen.transform.position;
         mannequinSeventeen.transform.position = locationSeventeen.transform.position;
         mannequinEighteen.transform.position = locationEightteen.transform.position;
+    }
+
+    public void doorOpenAnimation()
+    {
+        doorAnimatorOne.SetBool("DoorInteracted", true);
+    }
+
+    public void doorTwoOpenAnimation()
+    {
+        //doorAnimatorTwo.SetBool("DoorInteracted", true);
+    }
+
+    public void doorTopOpenAnimation()
+    {
+        doorOneAnimatorTop.SetBool("finalRing", true);
+        doorTwoAnimatorTop.SetBool("LastRing", true);
+        doorThreeAnimatorTop.SetBool("DoorInteracted", true);
+    }
+
+    public void finshedDoorAnim()
+    {
+        finishedDoor.SetBool("fiveRings", true);
+    }
+
+    public void anotherDoorAnim()
+    {
+        anotherDoor.SetBool("fifthRing", true);
+    }
+
+    public void showDecals()
+    {
+        decalOne.SetActive(true);
+        decalTwo.SetActive(true);
+        decalThree.SetActive(true);
+        decalFour.SetActive(true);
+        decalFive.SetActive(true);
+        decalSix.SetActive(true);
+        decalSeven.SetActive(true);
+        decalEight.SetActive(true);
+        decalNine.SetActive(true);
+        decalTen.SetActive(true);
+        decalEleven.SetActive(true);
+        decalTwelve.SetActive(true);    
+    }
+
+    public void offAnnie()
+    {
+        fakeAnnie.SetActive(false);
+    }
+
+    public void resetDoor()
+    {
+        if(normalDoor.activeSelf == true)
+        {
+            movedDoor.SetActive(true);
+            normalDoor.SetActive(false);
+        }
+        else
+        {
+            normalDoor.SetActive(false);
+            movedDoor.SetActive(false);
+            correctDoor.SetActive(true);
+        }
     }
 }

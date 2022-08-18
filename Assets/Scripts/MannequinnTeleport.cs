@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class MannequinnTeleport : MonoBehaviour
 {
-    public GameObject playerRef;
-    public static MannequinnTeleport instance;
+    GameObject playerRef;
+    int bellCountChecker;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        bellCountChecker = Player.bellRungCount;
     }
 
     public void OnBecameInvisible()
     {
-        if (playerRef)
+        if (playerRef & bellCountChecker == 3)
         {
             transform.position = playerRef.transform.position - playerRef.transform.forward;
 

@@ -18,6 +18,14 @@ TagManager:
   - axe
   - bible
   - phone
+  - door
+  - lockedDoor
+  - doorTwo
+  - decals
+  - finishDoor
+  - anotherdor
+  - swap
+  - annieAI
   layers:
   - Default
   - TransparentFX
